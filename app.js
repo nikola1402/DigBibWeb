@@ -6,23 +6,26 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var expressHbs = require('express-handlebars');
 var mongoose = require('mongoose');
+var multer = require('multer');
+var GridFsStorage = require('multer-gridfs-storage');
+var Grid = require('gridfs-stream');
 var session = require('express-session');
 var passport = require('passport');
 var flash = require('connect-flash');
 var validator = require('express-validator');
 
+var MongoStore = require('connect-mongo')(session);
+
 var index = require('./routes/index');
-var about = require('./routes/about');
-var login = require('./routes/login');
-var profile = require('./routes/profile');
-var searchLibrary = require('./routes/searchLibrary');
-var digitalLibrary = require('./routes/digitalLibrary');
-var booksFound = require('./routes/booksFound');
+var user = require('./routes/user');
 
 var app = express();
 
 //TODO OVO JE KOMENTARISANO KAKO JER NE RADIM STALNO SA BAZOM
-//mongoose.connect('localhost:27017/test');
+mongoose.connect('localhost:27017/test');
+var conn = mongoose.connection;
+Grid.mongo = mongoose.mongo;
+var gfs = Grid(conn.db);
 require('./config/passport');
 
 // view engine setup
@@ -33,11 +36,17 @@ app.set('view engine', '.hbs');
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(validator());
 app.use(cookieParser());
 //TODO OVO POGLEDAJ KAKO RADI (VIDEO TUTORIJAL ACEDMIND). TO JE ZA CSRF
-app.use(session({secret: 'mysupersecret', resave: false, saveUninitialized: false}));
+app.use(session({
+    secret: 'mysupersecret',
+    resave: false,
+    saveUninitialized: false,
+    store: new MongoStore({ mongooseConnection: mongoose.connection }),
+    cookie: { maxAge: 180 * 60 * 1000 }
+}));
 app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
@@ -45,16 +54,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(function (req, res, next) {
     res.locals.login = req.isAuthenticated();
+    res.locals.session = req.session;
     next();
 });
 
+
 app.use('/', index);
-app.use('/about', about);
-app.use('/login', login);
-app.use('/profile', profile);
-app.use('/searchLibrary', searchLibrary);
-app.use('/digitalLibrary', digitalLibrary);
-app.use('/booksFound', booksFound);
+app.use('/user', user);
 
 
 // catch 404 and forward to error handler

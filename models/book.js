@@ -97,8 +97,11 @@ var schema = new Schema({
         nacinNabavke: {type: String, required: true},
         povez: {type: String, required: true},
         cena: {type: String, required: true}
-    }
+    },
+    reservations: [{
+        type: Number, required: false
+    }]
 
-});
+}, {collection: 'knjige'});
 
 module.exports = mongoose.model('Book', schema);

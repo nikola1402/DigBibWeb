@@ -16,16 +16,23 @@ var userSchema = new Schema({
         expireDate: {type: String, required: true},
         joinType: {type: String, required: true},
         price: {type: Number, required: true}
+    },
+    zaduzenja: {
+        bookName: String,
+        bookAuthor: String,
+        invNumber: String,
+        bookTaken: String,
+        bookReturn: String
     }
 
-});
+}, {collection: 'korisnici'});
 
-userSchema.methods.encryptPassword = function (password) {
-    return bcrypt.hashSync(password, bcrypt.genSaltSync(5), null);
+userSchema.methods.encryptPassword = function (lastName) {
+    return bcrypt.hashSync(lastName, bcrypt.genSaltSync(5), null);
 };
 
-userSchema.methods.validPassword = function (password) {
-  return bcrypt.compareSync(password, this.password);
+userSchema.methods.validPassword = function (lastName) {
+  return bcrypt.compareSync(lastName, this.lastName);
 };
 
 module.exports = mongoose.model('User', userSchema);

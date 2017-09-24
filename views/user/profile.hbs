@@ -1,0 +1,71 @@
+<div class="profImg">
+    <div class="profImgContainer">
+        <img src="/public/images/profileImg.png" style="width:228px;height:228px;">
+    </div>
+</div>
+
+{{#with user}}
+<div class="personalData">
+    <ul>
+        <li>
+            <p>Ime korisnika: {{name}}</p>
+        </li>
+        <li>
+            <p>Prezime korisnika: {{lastName}}</p>
+        </li>
+        <li>
+            <p>Korisnicki broj: {{userID}}</p>
+        </li>
+        <li>
+            <p>Datum isteka clanarine: {{membership.expireDate}}</p>
+        </li>
+    </ul>
+</div>
+
+<br>
+<br>
+<br>
+<br>
+
+<div>
+    <p>Zaduzenja</p>
+</div>
+
+<br>
+<br>
+<br>
+
+<div class="booksTaken">
+    <table>
+        <tr>
+            <th>Naziv knjige</th>
+            <th>Autor</th>
+            <th>Datum zaduzenja</th>
+            <th>Rok vracanja</th>
+        </tr>
+{{#each zaduzenja}}
+    {{#each this}}
+        <tr>
+            <td>{{bookName}}</td>
+            <td>{{bookAuthor}}</td>
+            <td>{{bookTaken}}</td>
+            <td>{{bookReturn}}</td>
+        </tr>
+    {{/each}}
+{{/each}}
+    </table>
+</div>
+
+
+<form name="findHistory" method="post" action="findBooksHistory">
+
+
+    <div class="searchButton">
+        <button id="b" name="UID" value="{{userID}}" type="submit">Istorija zaduzenja!</button>
+    </div>
+
+</form>
+
+{{/with}}
+
+//TODO U BAZI ZADUZENJA UBACITI NAZIV SVAKOG OBJEKTA U NIZU, NPR 'KNJIGA' KAKO BI SE MOGLA VRSITI ITERACIJA PO NJOJ

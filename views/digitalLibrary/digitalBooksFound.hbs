@@ -1,0 +1,31 @@
+DIGITALNA KOLEKCIJA
+
+
+
+<div class="row-fluid" data-toggle="collapse" data-target="#collapseTwo">
+<form method="post" name="getDigitalBook" action="getDigitalBook">
+    <div class="booksFound">
+        <table>
+            <tr>
+                <th></th>
+                <th>Inventarni broj</th>
+                <th>Naziv knjige</th>
+                <th>Autor</th>
+            </tr>
+
+            {{#each digitalBooks}}
+                <tr>
+
+                    <td><input type="submit" name="button" value="{{_id}}"></td>
+                    <td class="span1">{{metadata.inventoryNumber}}</td>
+                    <td class="span3">{{metadata.title}}</td>
+                    <td class="span3">{{metadata.creator}}</td>
+                </tr>
+
+            {{/each}}
+
+        </table>
+    </div>
+</form>
+</div>
+

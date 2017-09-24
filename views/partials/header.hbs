@@ -8,7 +8,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Brand</a>
+            <a class="navbar-brand" href="/">Početna</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -26,20 +26,13 @@
                 <button type="submit" class="btn btn-default">Submit</button>
             </form>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#"><i class="fa fa-user" aria-hidden="true"></i> Nalog</a></li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        {{# if login }}
-                            <li><a href="#">Vas nalog</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#">Izlogujte se</a></li>
-                        {{ else }}
-                            <li><a href="#">Ulogujte se</a></li>
-                            <li><a href="#">Another action</a></li>
-                        {{/if}}
-                    </ul>
-                </li>
+                {{# if login }}
+                    <li><a href="/user/profile"><i class="fa fa-user" aria-hidden="true"></i> Vaš profil</a></li>
+                    <li><a href="/user/logout">Izlogujte se</a></li>
+                {{ else }}
+                    <li><a href="/user/login"><i class="fa fa-user" aria-hidden="true"></i> Ulogujte se</a></li>
+                {{/if}}
+
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
