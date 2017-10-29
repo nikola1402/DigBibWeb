@@ -27,3 +27,4 @@ var schema = new Schema({
 }, {collection: 'objekti.files'});
 
 module.exports = mongoose.model('DigitalBook', schema);
+

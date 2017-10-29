@@ -12,3 +12,4 @@ var schema = new Schema({
 }, {collection: 'proba'});
 
 module.exports = mongoose.model('Proba', schema);
+

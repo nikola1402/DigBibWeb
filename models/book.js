@@ -2,7 +2,6 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var schema = new Schema({
-
     inventory: {type: String, required: true},
     processed: {
         identifikatorSloga: {
@@ -101,7 +100,8 @@ var schema = new Schema({
     reservations: [{
         type: Number, required: false
     }]
-
 }, {collection: 'knjige'});
 
 module.exports = mongoose.model('Book', schema);
+
+

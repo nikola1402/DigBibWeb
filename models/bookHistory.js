@@ -14,3 +14,4 @@ var schema = new Schema({
 }, {collection: 'istorijaZaduzenja'});
 
 module.exports = mongoose.model('BookHistory', schema);
+

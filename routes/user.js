@@ -19,11 +19,9 @@ router.get('/logout', isLoggedIn, function (req, res, next) {
 router.post('/findBooksHistory', isLoggedIn, function (req, res, next) {
 
     var UID = req.body.UID;
-    console.log('KORISNIK: '+UID);
 
     BookHistory.find({'userID': UID})
         .then(function (booksHistory) {
-        console.log('ISTORIJA ZADUZENJA: '+ booksHistory);
         res.render('user/booksHistory', {booksHistory: booksHistory});
     });
 });
