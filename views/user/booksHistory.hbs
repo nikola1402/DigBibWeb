@@ -1,33 +1,29 @@
-<div class="booksFound">
-
-
-    <table>
-
-        <tr>
-            <th>Inventarni broj</th>
-            <th>Naziv knjige</th>
-            <th>Autor</th>
-            <th>Datum zaduženja</th>
-        </tr>
-
-
-        {{#booksHistory}}
-            {{#each zaduzenja}}
-                {{#each this}}
-
-             <tr>
-                <td class="span1">{{invNumber}}</td>
-                <td class="span3">{{bookName}}</td>
-                <td class="span3">{{bookAuthor}}</td>
-                <td class="span3">{{bookTaken}}</td>
-
+<div class="profile-wrap">
+    <h1>Vaša istorija zaduženja</h1><br><br>
+    <div class="booksFound">
+        <table>
+            <tr>
+                <th>Inventarni broj</th>
+                <th>Naziv knjige</th>
+                <th>Autor</th>
+                <th>Datum zaduženja</th>
             </tr>
 
+            {{#booksHistory}}
+                {{#each zaduzenja}}
+                    {{#each this}}
+
+                 <tr>
+                    <td class="span1">{{invNumber}}</td>
+                    <td class="span3">{{bookName}}</td>
+                    <td class="span3">{{bookAuthor}}</td>
+                    <td class="span3">{{bookTaken}}</td>
+
+                </tr>
+
+                    {{/each}}
                 {{/each}}
-            {{/each}}
-        {{/booksHistory}}
-    </table>
-
-
+            {{/booksHistory}}
+        </table>
+    </div>
 </div>
-

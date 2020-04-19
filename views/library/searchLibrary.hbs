@@ -1,37 +1,24 @@
-<h1>Pretraga biblioteke</h1>
+<div class="profile-wrap">
+    <h1>Pretraga biblioteke</h1>
 
-        <div class="searchButtons">
-                <button id="b1" type="button" onclick="alert('Hello world!')">Click Me!</button>
-                <button id="b2" type="button" onclick="alert('Hello world!')">Click Me!</button>
-                <button id="b3" type="button" onclick="alert('Hello world!')">Click Me!</button>
-                <button id="b4" type="button" onclick="alert('Hello world!')">Click Me!</button>
-                <button id="b5" type="button" onclick="alert('Hello world!')">Click Me!</button>
-        </div>
-
-        <div class="searchBox">
-            <div class="searchBoxContainer">
-                <form name="findBook" method="post" action="findBooks">
-
-                        <input type="radio" name="typeQuery" value="naslov"> Naslov<br>
-                        <input type="radio" name="typeQuery" value="autor"> Autor<br>
-                        <input type="radio" name="typeQuery" value="godina"> Godina izdanja<br>
-
-                        <input type="text" id="bookQuery" name="bookQuery" placeholder="Search..." />
-
-                    <div class="searchButton">
-                        <button id="b" type="submit">Search!</button>
+    <div class="searchBox">
+        <div class="searchBoxContainer">
+            <form name="findBook" method="post" action="findBooks">
+                <div class="radio-button-wrap clearfix">
+                    <div class="radio-button-container">
+                        <input type="radio" name="typeQuery" value="naslov"> Naslov
                     </div>
+                    <div class="radio-button-container">
+                        <input type="radio" name="typeQuery" value="autor"> Autor<br>
+                    </div>
+                    <div class="radio-button-container">
+                        <input type="radio" name="typeQuery" value="godina"> Godina izdanja<br>
+                    </div>
+                </div>
 
-                </form>
-            </div>
+                <input type="text" class="search-field" id="bookQuery" name="bookQuery" placeholder="Search..." />
+                <button  id="button2" class="button-default inline-button" type="submit">Search!</button>
+            </form>
         </div>
-
-
-        <!--<div>-->
-            <!--<form name="findBook" method="post" action="findBooks">-->
-
-                <!--<input type="text" name="bookQuery"><br>-->
-                <!--<input type="submit" value="Trazi">-->
-
-            <!--</form>-->
-        <!--</div>-->
+    </div>
+</div>
